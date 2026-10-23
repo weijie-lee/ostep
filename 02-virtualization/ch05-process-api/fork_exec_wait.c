@@ -55,11 +55,14 @@ static void demo_exec(void) {
     close(fds[1]);
     n = read(fds[0], buf, sizeof(buf) - 1);
     CHECK(n > 0);
+    if (n > 0 && buf[n - 1] == '\n') {
+        n -= 1;
+    }
     buf[n] = '\0';
     close(fds[0]);
     CHECK(wait_child(pid) == 0);
-    printf("exec: 子进程映像已被 /bin/echo 替换，父进程读到 \"%s\"", buf);
-    CHECK(strcmp(buf, "hello-from-exec\n") == 0);
+    printf("exec: 子进程映像已被 /bin/echo 替换，父进程读到 \"%s\"\n", buf);
+    CHECK(strcmp(buf, "hello-from-exec") == 0);
 }
 
 int main(void) {

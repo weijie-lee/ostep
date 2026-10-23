@@ -21,6 +21,8 @@ python3 02-virtualization/ch07-cpu-scheduling/scheduler.py
 ./build/03-concurrency/ch30-condition-variables/prodcons
 ```
 
+每一章的 `README.md` 都有三节：实验步骤、实验结果、结果说明。实验结果是一次真实运行的输出。PID、指针、inode 号、盐和临时目录每次会变，README 里写了哪些数字应当保持不变。
+
 ## 目录
 
 书前的献词、前言和总目录没有机制，说明在 `00-front-matter`。

@@ -1,13 +1,50 @@
 # 附录：系统实验
 
-书末的 Systems Labs 是一整套编程作业，不是一两页能复现的。和本书目录最接近的几件练习，在这个仓库里已经有对应的小演示：
+书里的系统实验是完整作业。这里把其中两笔已经在前面测到的结果再对上作业主题，不另写一套评分程序。
 
-| 作业里要碰的东西 | 对应演示 |
+## 实验步骤
+
+1. 调度作业，运行：
+
+```bash
+python3 02-virtualization/ch07-cpu-scheduling/scheduler.py
+```
+
+只记录两组平均周转时间。
+
+2. 文件作业，运行：
+
+```bash
+python3 04-persistence/ch40-file-system-implementation/vsfs.py
+```
+
+只记录 inode 号、直接指针和读回的字节。
+
+## 实验结果
+
+调度：
+
+```text
+FIFO 平均周转 110.0
+SJF  平均周转 50.0
+```
+
+文件系统：
+
+```text
+创建 hello -> inode 1，目录项 [('hello', 1)]
+写入 18 字节，直接指针 [0, 1, 2, None]
+读回 b'abcdefghijklmnopQR'
+```
+
+## 结果说明
+
+| 作业里要碰的东西 | 本仓库里的步骤和结果 |
 | --- | --- |
-| 用 C 和外壳创建进程 | `06-appendices/lab-tutorial`、`02-virtualization/ch05-process-api` |
-| 调度策略 | `02-virtualization/ch07-cpu-scheduling` 到 `ch10` |
-| 地址翻译、页表、TLB | `02-virtualization/ch15-address-translation` 到 `ch23` |
-| 线程、锁、条件变量 | `03-concurrency/ch26-threads` 到 `ch33` |
-| 一个很小的文件系统 | `04-persistence/ch40-file-system-implementation` |
+| 外壳 | 实验入门：`echo` 退出码 0，`false` 退出码 1 |
+| 调度 | 上表，110 对 50 |
+| 地址翻译和页表 | 第 18–20 章，例如 `0x04f -> 0x24f`，两级页表 48 项对线性 256 项 |
+| 线程和锁 | 第 26–31 章，无锁计数 1、加锁计数 2 |
+| 小文件系统 | 上表，18 字节占用直接指针 0、1、2 |
 
-作业说明以书中给出的实验页为准。这里的代码用来把每一章的机制先跑通。
+作业说明以书中的实验页为准。上表是这些机制在本仓库里已经跑出的数。
