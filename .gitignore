@@ -1,0 +1,8 @@
+build/
+__pycache__/
+*.pyc
+*.o
+*.dSYM/
+.DS_Store
+/tmp/
+*.out
